@@ -1,0 +1,1446 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1, maximum-scale=1, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Portafolio de Franco Dufourquet</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #121212;
+      color: #e0e0e0;
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-overflow-scrolling: touch;
+    }
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      padding: 1rem;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .nav-container {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      justify-content: space-between;
+    }
+    .hamburger {
+      display: none;
+      font-size: 1.8rem;
+      background: none;
+      border: none;
+      color: #e0e0e0;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      transition: color 0.3s;
+    }
+    .hamburger:hover {
+      color: #00d4ff;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      margin-right: 1rem;
+    }
+    nav a {
+      color: #e0e0e0;
+      text-decoration: none;
+      font-size: 1.1rem;
+      font-weight: 400;
+      transition: color 0.3s, transform 0.3s;
+    }
+    nav a:hover {
+      color: #00d4ff;
+      transform: translateY(-2px);
+    }
+    .lang-selector {
+      padding: 0.5rem;
+      background: #1e1e1e;
+      border: 1px solid #00d4ff;
+      color: #e0e0e0;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .lang-selector:hover {
+      background: #2a2a2a;
+      transform: scale(1.05);
+    }
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 70%;
+      height: 100%;
+      background: #1e1e1e;
+      padding: 2rem;
+      transition: right 0.3s ease-in-out;
+      z-index: 999;
+    }
+    .mobile-menu.active {
+      right: 0;
+    }
+    .mobile-menu ul {
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .mobile-menu a {
+      font-size: 1.2rem;
+      display: block;
+    }
+    .mobile-menu .lang-selector {
+      width: 100%;
+      margin-top: 1rem;
+    }
+    .close-btn {
+      background: none;
+      border: none;
+      color: #e0e0e0;
+      font-size: 1.8rem;
+      cursor: pointer;
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      -webkit-tap-highlight-color: transparent;
+      transition: color 0.3s;
+    }
+    .close-btn:hover {
+      color: #00d4ff;
+    }
+    header {
+      background: url('https://images.unsplash.com/photo-1516321310765-79de03b2a40a') no-repeat center/cover;
+      background-attachment: fixed;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+    }
+    header::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+    }
+    @keyframes parallax {
+      0% { background-position: center 0; }
+      100% { background-position: center -10px; }
+    }
+    .header-content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .header-content img {
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      border: 6px solid transparent;
+      background: linear-gradient(45deg, #00d4ff, #00b0cc) border-box;
+      object-fit: cover;
+      margin-bottom: 1.5rem;
+      transition: transform 0.5s, border-color 0.5s;
+    }
+    .header-content img:hover {
+      transform: rotate(10deg) scale(1.05);
+    }
+    header h1 {
+      font-size: 4.5rem;
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+      color: #00d4ff;
+      display: inline-block;
+      min-height: 5rem;
+      vertical-align: middle;
+    }
+    header p {
+      font-size: 1.8rem;
+      font-weight: 300;
+      margin-bottom: 2.5rem;
+      transition: color 0.3s, transform 0.3s;
+    }
+    header p:hover {
+      color: #00d4ff;
+      transform: translateY(-3px);
+    }
+    .btn {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-size: 1.1rem;
+      font-weight: 600;
+      transition: transform 0.3s, background 0.3s, color 0.3s, box-shadow 0.3s;
+      -webkit-tap-highlight-color: transparent;
+      box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+    }
+    .btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 20px rgba(0, 212, 255, 0.5);
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1.1); }
+      50% { transform: scale(1.15); }
+      100% { transform: scale(1.1); }
+    }
+    .btn-primary {
+      background: #00d4ff;
+      color: #121212;
+    }
+    .btn-primary:hover {
+      background: #00b0cc;
+    }
+    .btn-secondary {
+      background: transparent;
+      border: 2px solid #00d4ff;
+      color: #00d4ff;
+      margin-left: 1rem;
+    }
+    .btn-secondary:hover {
+      background: #00d4ff;
+      color: #121212;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    section {
+      padding: 4rem 0;
+    }
+    h2 {
+      font-size: 2.5rem;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #00d4ff;
+      transition: color 0.3s, transform 0.3s;
+    }
+    h2:hover {
+      color: #00b0cc;
+      transform: translateY(-5px);
+    }
+    .about {
+      background: #1e1e1e;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      text-align: center;
+    }
+    .about-content p {
+      font-size: 1.1rem;
+      margin-bottom: 1.2rem;
+      transition: color 0.3s, transform 0.3s;
+    }
+    .about-content p:hover {
+      color: #00d4ff;
+      transform: translateY(-3px);
+    }
+    .education, .certifications, .achievements {
+      margin-top: 1.5rem;
+    }
+    .education h3, .certifications h3, .achievements h3 {
+      font-size: 1.6rem;
+      color: #00d4ff;
+      margin-bottom: 1rem;
+      transition: color 0.3s, transform 0.3s;
+    }
+    .education h3:hover, .certifications h3:hover, .achievements h3:hover {
+      color: #00b0cc;
+      transform: translateY(-3px);
+    }
+    .education-item, .certification-item, .achievement-item {
+      background: #2a2a2a;
+      padding: 0.8rem;
+      border-radius: 8px;
+      margin-bottom: 0.8rem;
+      transition: transform 0.3s, background 0.3s;
+    }
+    .education-item:hover, .certification-item:hover, .achievement-item:hover {
+      transform: translateY(-5px);
+      background: #3a3a3a;
+    }
+    .education-item h4, .certification-item h4 {
+      font-size: 1.2rem;
+      margin-bottom: 0.4rem;
+      transition: color 0.3s;
+    }
+    .education-item h4:hover, .certification-item h4:hover {
+      color: #00d4ff;
+    }
+    .education-item p, .certification-item p, .achievement-item p {
+      font-size: 0.95rem;
+      transition: color 0.3s;
+    }
+    .education-item p:hover, .certification-item p:hover, .achievement-item p:hover {
+      color: #00d4ff;
+    }
+    .stats {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 1.5rem;
+      text-align: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .stat-item {
+      background: #2a2a2a;
+      padding: 0.8rem;
+      border-radius: 10px;
+      width: 30%;
+      min-width: 200px;
+      transition: transform 0.3s, background 0.3s;
+    }
+    .stat-item:hover {
+      transform: translateY(-5px);
+      background: #3a3a3a;
+    }
+    .stat-item h3 {
+      font-size: 2rem;
+      color: #00d4ff;
+      transition: color 0.3s;
+    }
+    .stat-item h3:hover {
+      color: #00b0cc;
+    }
+    .stat-item p {
+      font-size: 0.9rem;
+      color: #ccc;
+      transition: color 0.3s;
+    }
+    .stat-item p:hover {
+      color: #00d4ff;
+    }
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
+    .skill {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #1e1e1e;
+      padding: 0.5rem 1.2rem;
+      border-radius: 20px;
+      font-size: 0.95rem;
+      transition: transform 0.3s, background 0.3s, color 0.3s;
+    }
+    .skill:hover {
+      transform: translateY(-5px);
+      background: #00d4ff;
+      color: #121212;
+    }
+    .skill i {
+      color: #00d4ff;
+      transition: color 0.3s;
+    }
+    .skill:hover i {
+      color: #121212;
+    }
+    .experience {
+      background: #1e1e1e;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+    .experience-item {
+      background: #2a2a2a;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      transition: transform 0.3s, background 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .experience-item:hover {
+      transform: translateY(-5px);
+      background: #3a3a3a;
+    }
+    .experience-item i {
+      font-size: 2rem;
+      color: #00d4ff;
+      transition: color 0.3s;
+    }
+    .experience-item:hover i {
+      color: #00b0cc;
+    }
+    .experience-item h4 {
+      font-size: 1.3rem;
+      margin-bottom: 0.4rem;
+      transition: color 0.3s;
+    }
+    .experience-item h4:hover {
+      color: #00d4ff;
+    }
+    .experience-item p {
+      font-size: 0.95rem;
+      transition: color 0.3s;
+    }
+    .experience-item p:hover {
+      color: #00d4ff;
+    }
+    .carousel {
+      position: relative;
+      overflow: hidden;
+      background: #1e1e1e;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      margin: 0 auto;
+      max-width: 100%;
+    }
+    .carousel-inner {
+      display: flex;
+      transition: transform 0.6s ease-in-out;
+      will-change: transform;
+    }
+    .project-card {
+      flex: 0 0 calc(100% / var(--visible-items));
+      padding: 1rem;
+      text-align: center;
+      background: #2a2a2a;
+      border-radius: 12px;
+      margin: 0 0.5rem;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 25px rgba(0, 212, 255, 0.4);
+    }
+    .project-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+      transition: transform 0.3s, filter 0.3s;
+    }
+    .project-card img:hover {
+      transform: scale(1.05);
+      filter: brightness(1.1);
+    }
+    .project-card h3 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      transition: color 0.3s, transform 0.3s;
+    }
+    .project-card h3:hover {
+      color: #00d4ff;
+      transform: translateY(-3px);
+    }
+    .project-card p {
+      font-size: 0.95rem;
+      color: #ccc;
+      margin-bottom: 0.8rem;
+      transition: color 0.3s, transform 0.3s;
+    }
+    .project-card p:hover {
+      color: #00d4ff;
+      transform: translateY(-3px);
+    }
+    .project-card a {
+      color: #00d4ff;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s, transform 0.3s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .project-card a:hover {
+      color: #00b0cc;
+      transform: translateY(-2px);
+      text-decoration: underline;
+    }
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #00d4ff;
+      border: none;
+      padding: 0.8rem 1.3rem;
+      cursor: pointer;
+      font-size: 1.5rem;
+      color: #121212;
+      border-radius: 50%;
+      transition: background 0.3s, transform 0.3s;
+      -webkit-tap-highlight-color: transparent;
+      z-index: 10;
+    }
+    .carousel-btn:hover {
+      background: #00b0cc;
+      transform: scale(1.2);
+    }
+    .prev {
+      left: 1rem;
+    }
+    .next {
+      right: 1rem;
+    }
+    .carousel-indicators {
+      text-align: center;
+      margin-top: 1.5rem;
+    }
+    .carousel-indicators span {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      background: #555;
+      border-radius: 50%;
+      margin: 0 6px;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.3s, width 0.3s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .carousel-indicators span:hover {
+      background: #00d4ff;
+      transform: scale(1.3);
+    }
+    .carousel-indicators .active {
+      background: #00d4ff;
+      width: 16px;
+      transform: scale(1.3);
+    }
+    .contact {
+      background: #1e1e1e;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+    .contact form {
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .contact-info {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    .contact-info p {
+      font-size: 1rem;
+      margin: 0.4rem 0;
+      transition: color 0.3s, transform 0.3s;
+    }
+    .contact-info p:hover {
+      color: #00d4ff;
+      transform: translateY(-3px);
+    }
+    .contact-info a {
+      color: #00d4ff;
+      text-decoration: none;
+      transition: color 0.3s, transform 0.3s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .contact-info a:hover {
+      color: #00b0cc;
+      transform: translateY(-2px);
+      text-decoration: underline;
+    }
+    input, textarea {
+      padding: 0.8rem;
+      background: #2a2a2a;
+      border: 1px solid #00d4ff;
+      border-radius: 8px;
+      color: #e0e0e0;
+      font-size: 1rem;
+      transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+      -webkit-appearance: none;
+    }
+    input:hover, textarea:hover {
+      border-color: #00b0cc;
+      transform: scale(1.clib)
+    }
+    input:focus, textarea:focus {
+      border-color: #00b0cc;
+      box-shadow: 0 0 8px rgba(0, 212, 255, 0.3);
+      outline: none;
+    }
+    textarea {
+      resize: vertical;
+    }
+    button {
+      background: #00d4ff;
+      color: #121212;
+      padding: 0.8rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: transform 0.3s, background 0.3s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    button:hover {
+      background: #00b0cc;
+      transform: scale(1.05);
+    }
+    footer {
+      background: #0a0a0a;
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.9rem;
+    }
+    footer p {
+      transition: color 0.3s, transform 0.3s;
+    }
+    footer p:hover {
+      color: #00d4ff;
+      transform: translateY(-3px);
+    }
+    @media (max-width: 1024px) {
+      :root {
+        --visible-items: 2;
+      }
+      .project-card {
+        flex: 0 0 50%;
+      }
+      .project-card img {
+        height: 180px;
+      }
+      header {
+        height: 90vh;
+      }
+      .header-content img {
+        width: 180px;
+        height: 180px;
+      }
+      header h1 {
+        font-size: 3.5rem;
+      }
+      header p {
+        font-size: 1.5rem;
+      }
+    }
+    @media (max-width: 768px) {
+      :root {
+        --visible-items: 1;
+      }
+      .hamburger {
+        display: block;
+      }
+      nav ul {
+        display: none;
+      }
+      .lang-selector {
+        margin-left: 0;
+      }
+      header {
+        height: 80vh;
+      }
+      .header-content {
+        flex-direction: column;
+        align-items: center;
+      }
+      .header-content img {
+        width: 150px;
+        height: 150px;
+        margin-bottom: 1rem;
+      }
+      header h1 {
+        font-size: 2.5rem;
+        min-height: 3rem;
+      }
+      header p {
+        font-size: 1.2rem;
+      }
+      .btn {
+        padding: 0.8rem 2rem;
+        font-size: 1rem;
+        width: 100%;
+        text-align: center;
+      }
+      .btn-secondary {
+        margin-left: 0;
+        margin-top: 1rem;
+      }
+      .about {
+        padding: 1rem;
+      }
+      .project-card {
+        flex: 0 0 100%;
+      }
+      .stats {
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+      .stat-item {
+        width: 100%;
+        min-width: unset;
+      }
+      .carousel-btn {
+        padding: 0.6rem 1rem;
+        font-size: 1.2rem;
+      }
+      .carousel {
+        padding: 1rem;
+      }
+      .project-card img {
+        height: 150px;
+      }
+      .project-card h3 {
+        font-size: 1.2rem;
+      }
+      .project-card p {
+        font-size: 0.9rem;
+      }
+      .contact {
+        padding: 1.5rem;
+      }
+      .contact-info p {
+        font-size: 0.9rem;
+      }
+      input, textarea {
+        font-size: 0.9rem;
+        padding: 0.6rem;
+      }
+      button {
+        padding: 0.6rem;
+        font-size: 0.9rem;
+      }
+      section {
+        padding: 3rem 0;
+      }
+      h2 {
+        font-size: 2rem;
+      }
+      .carousel-indicators span {
+        width: 10px;
+        height: 10px;
+        margin: 0 5px;
+      }
+      .carousel-indicators .active {
+        width: 14px;
+      }
+      .experience-item {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .experience-item i {
+        font-size: 1.5rem;
+      }
+    }
+    @media (max-width: 480px) {
+      header {
+        height: 70vh;
+      }
+      .header-content img {
+        width: 120px;
+        height: 120px;
+      }
+      header h1 {
+        font-size: 2rem;
+      }
+      header p {
+        font-size: 1rem;
+      }
+      .btn {
+        padding: 0.6rem 1.5rem;
+        font-size: 0.9rem;
+      }
+      .container {
+        padding: 0 1rem;
+      }
+      .carousel-btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 1rem;
+      }
+      .about-content p {
+        font-size: 1rem;
+      }
+      .education h3, .certifications h3, .achievements h3 {
+        font-size: 1.4rem;
+      }
+      .education-item h4, .certification-item h4 {
+        font-size: 1.1rem;
+      }
+      .education-item p, .certification-item p, .achievement-item p {
+        font-size: 0.85rem;
+      }
+      .skill {
+        font-size: 0.85rem;
+        padding: 0.4rem 1rem;
+      }
+      .stat-item h3 {
+        font-size: 1.8rem;
+      }
+      .stat-item p {
+        font-size: 0.85rem;
+      }
+      footer {
+        padding: 1rem;
+        font-size: 0.85rem;
+      }
+      .carousel-indicators span {
+        width: 8px;
+        height: 8px;
+        margin: 0 4px;
+      }
+      .carousel-indicators .active {
+        width: 12px;
+      }
+      .experience-item h4 {
+        font-size: 1.1rem;
+      }
+      .experience-item p {
+        font-size: 0.85rem;
+      }
+    }
+    @media (min-width: 1920px) {
+      .container {
+        max-width: 1400px;
+      }
+      header h1 {
+        font-size: 5rem;
+      }
+      header p {
+        font-size: 2rem;
+      }
+      .btn {
+        padding: 1.2rem 3rem;
+        font-size: 1.2rem;
+      }
+      .project-card img {
+        height: 250px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-container">
+      <button class="hamburger"><i class="fas fa-bars"></i></button>
+      <select class="lang-selector" onchange="changeLanguage(this.value)">
+        <option value="es">Español</option>
+        <option value="en">English</option>
+        <option value="pt">Português</option>
+      </select>
+      <ul>
+        <li><a href="#home">Inicio</a></li>
+        <li><a href="#about">Sobre Mí</a></li>
+        <li><a href="#skills">Habilidades</a></li>
+        <li><a href="#experience">Experiencia</a></li>
+        <li><a href="#projects">Proyectos</a></li>
+        <li><a href="#contact">Contacto</a></li>
+      </ul>
+    </div>
+    <div class="mobile-menu">
+      <button class="close-btn"><i class="fas fa-times"></i></button>
+      <ul>
+        <li><a href="#home">Inicio</a></li>
+        <li><a href="#about">Sobre Mí</a></li>
+        <li><a href="#skills">Habilidades</a></li>
+        <li><a href="#experience">Experiencia</a></li>
+        <li><a href="#projects">Proyectos</a></li>
+        <li><a href="#contact">Contacto</a></li>
+      </ul>
+      <select class="lang-selector" onchange="changeLanguage(this.value)">
+        <option value="es">Español</option>
+        <option value="en">English</option>
+        <option value="pt">Português</option>
+      </select>
+    </div>
+  </nav>
+  <header id="home">
+    <div class="header-content" data-aos="zoom-in">
+      <img src="imagenes/WhatsApp Image 2025-04-10 at 23.58.35.jpeg" alt="Foto de perfil">
+      <h1 id="header-name"></h1>
+      <p id="header-title">Desarrollador Front-End | Especialista en UX & Unity</p>
+      <div>
+        <a href="#contact" class="btn btn-primary" id="contact-btn">Contáctame</a>
+        <a href="cvs/FrancoCv.pdf" download class="btn btn-secondary" id="cv-btn">Descargar CV</a>
+      </div>
+    </div>
+  </header>
+  <div class="container">
+    <section id="about" data-aos="fade-up">
+      <h2 id="about-title">Sobre Mí</h2>
+      <div class="about" data-aos="fade-up" data-aos-delay="50">
+        <div class="about-content">
+          <p id="about-text" data-aos="fade-up" data-aos-delay="100">Me dirijo a usted con el propósito de expresar mi interés en la oportunidad de unirme como programador. A lo largo de mi carrera, he tenido la oportunidad de trabajar en proyectos desafiantes y enriquecedores, lo que me ha permitido desarrollar una sólida base técnica y habilidades interpersonales. Soy una persona sociable que se adapta fácilmente a diferentes entornos y equipos, con un enfoque persistente y orientado a resultados. Además, he desarrollado juegos en 3D y 2D utilizando Unity, lo que me ha dado una perspectiva única sobre la creación de experiencias interactivas. Mi dominio del español, portugués e inglés también es un plus que me permite colaborar en equipos multiculturales. ¡Gracias por su tiempo y consideración!</p>
+          <div class="education">
+            <h3 id="education-title" data-aos="fade-up" data-aos-delay="150">Formación</h3>
+            <div class="education-item" data-aos="fade-up" data-aos-delay="200">
+              <h4>Universidad UCES - Programación en Sistemas (1er Año, Cursando)</h4>
+              <p>Buenos Aires, Argentina | 2025 - Presente</p>
+              <p>Materias: Programación, Bases de Datos, Metodología de Sistemas, Diseño Centrado en Objetos.</p>
+            </div>
+            <div class="education-item" data-aos="fade-up" data-aos-delay="250">
+              <h4>Programa Argentina 4.0</h4>
+              <p>2024</p>
+              <p>Introducción a Java (Aprobado, 40 horas): Fundamentos de programación orientada a objetos.</p>
+              <p>Introducción a la Programación (Aprobado, 30 horas): Lógica y estructuras básicas.</p>
+            </div>
+            <div class="education-item" data-aos="fade-up" data-aos-delay="300">
+              <h4>Institución de Enseñanza XYZ - Técnico en Desarrollo de Software</h4>
+              <p>Brasilia, Brasil | Conclusión: Dic 2024</p>
+              <p>Enfoque: Arquitectura de Software, UX Avanzado, Desarrollo Ágil.</p>
+            </div>
+            <div class="education-item" data-aos="fade-up" data-aos-delay="350">
+              <h4>Escola CETEB de Jovens e Adultos - Educación Secundaria</h4>
+              <p>Brasilia, Brasil | 2018</p>
+            </div>
+            <div class="education-item" data-aos="fade-up" data-aos-delay="400">
+              <h4>Instituto de Educación Integral Santa Maria - Educación Primaria</h4>
+              <p>Mercedes, Argentina | 2011</p>
+            </div>
+          </div>
+          <div class="certifications">
+            <h3 id="certifications-title" data-aos="fade-up" data-aos-delay="450">Certificaciones</h3>
+            <div class="certification-item" data-aos="fade-up" data-aos-delay="500">
+              <h4>Python para Automatización - Santander Open Academy</h4>
+              <p>2024 | Serial: PY-2024-XYZ123 | 40 horas</p>
+              <p>Automatización de tareas con scripts Python.</p>
+            </div>
+            <div class="certification-item" data-aos="fade-up" data-aos-delay="550">
+              <h4>Inglés para Negocios C1 - EF Standard</h4>
+              <p>2024 | Serial: EF-C1-2024-789 | 60 horas</p>
+              <p>Comunicación profesional en entornos internacionales.</p>
+            </div>
+            <div class="certification-item" data-aos="fade-up" data-aos-delay="600">
+              <h4>Ingeniería de Prompts - DeepLearning.AI</h4>
+              <p>2024 | Serial: DL-PENG-2024-456 | 20 horas</p>
+              <p>Optimización de modelos de IA generativa.</p>
+            </div>
+          </div>
+          <div class="achievements">
+            <h3 id="achievements-title" data-aos="fade-up" data-aos-delay="650">Logros Destacados</h3>
+            <div class="achievement-item" data-aos="fade-up" data-aos-delay="700">
+              <p>Top 5% en Bootcamp DevPro 2023 (evaluación en lógica y React).</p>
+            </div>
+            <div class="achievement-item" data-aos="fade-up" data-aos-delay="750">
+              <p>Integré IA generativa en 2 proyectos web, mejorando la interactividad en un 35%.</p>
+            </div>
+            <div class="achievement-item" data-aos="fade-up" data-aos-delay="800">
+              <p>Colaboré en equipos multiculturales (España, México, Argentina), logrando entregas 100% a tiempo.</p>
+            </div>
+          </div>
+          <div class="stats">
+            <div class="stat-item" data-aos="fade-up" data-aos-delay="850">
+              <h3>+20%</h3>
+              <p id="stat-traffic">Tráfico Orgánico</p>
+            </div>
+            <div class="stat-item" data-aos="fade-up" data-aos-delay="900">
+              <h3>100%</h3>
+              <p id="stat-projects">Proyectos a Tiempo</p>
+            </div>
+            <div class="stat-item" data-aos="fade-up" data-aos-delay="950">
+              <h3>4.8/5</h3>
+              <p id="stat-usability">Pruebas de Usabilidad</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="skills" data-aos="fade-up">
+      <h2 id="skills-title">Habilidades</h2>
+      <div class="skills-list">
+        <div class="skill" data-aos="zoom-in" data-aos-delay="50"><i class="fab fa-html5"></i> HTML5</div>
+        <div class="skill" data-aos="zoom-in" data-aos-delay="100"><i class="fab fa-css3-alt"></i> CSS3</div>
+        <div class="skill" data-aos="zoom-in" data-aos-delay="150"><i class="fab fa-js"></i> JavaScript</div>
+        <div class="skill" data-aos="zoom-in" data-aos-delay="200"><i class="fab fa-react"></i> React</div>
+        <div class="skill" data-aos="zoom-in" data-aos-delay="250"><i class="fab fa-java"></i> Java</div>
+        <div class="skill" data-aos="zoom-in" data-aos-delay="300"><i class="fab fa-cuttlefish"></i> C++</div>
+        <div class="skill" data-aos="zoom-in" data-aos-delay="350"><i class="fas fa-database"></i> Bases de Datos</div>
+        <div class="skill" data-aos="zoom-in" data-aos-delay="400"><i class="fab fa-git-alt"></i> Git & GitHub</div>
+        <div class="skill" data-aos="zoom-in" data-aos-delay="450"><i class="fab fa-jira"></i> Jira</div>
+        <div class="skill" data-aos="zoom-in" data-aos-delay="500"><i class="fas fa-code"></i> VS Code</div>
+        <div class="skill" data-aos="zoom-in" data-aos-delay="550"><i class="fas fa-users"></i> Scrum/Ágil</div>
+        <div class="skill" data-aos="zoom-in" data-aos-delay="600"><i class="fas fa-paint-brush"></i> UI/UX con Figma</div>
+        <div class="skill" data-aos="zoom-in" data-aos-delay="650"><i class="fab fa-unity"></i> Unity</div>
+        <div class="skill" data-aos="zoom-in" data-aos-delay="700"><i class="fab fa-wordpress"></i> WordPress</div>
+      </div>
+    </section>
+    <section id="experience" data-aos="fade-up">
+      <h2 id="experience-title">Experiencia Laboral</h2>
+      <div class="experience">
+        <div class="experience-item" data-aos="fade-up" data-aos-delay="50">
+          <i class="fas fa-table"></i>
+          <div>
+            <h4>Pasantía - Conformación de Planillas de Cálculo</h4>
+            <p>Grupo New Energy | Febrero 2023</p>
+            <p>Creación y gestión de planillas de cálculo para análisis de datos, optimizando procesos administrativos.</p>
+          </div>
+        </div>
+        <div class="experience-item" data-aos="fade-up" data-aos-delay="100">
+          <i class="fas fa-tools"></i>
+          <div>
+            <h4>Técnico en Mantenimiento e Instalación</h4>
+            <p>Bug Soluciones Informáticas S.A. | 2020 - Presente</p>
+            <p>Mantenimiento e instalación de equipos informáticos, cableado estructurado y soporte técnico, garantizando operatividad y eficiencia.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="projects" data-aos="fade-up">
+      <h2 id="projects-title">Proyectos</h2>
+      <div class="carousel">
+        <div class="carousel-inner">
+          <div class="project-card" data-aos="slide-up" data-aos-delay="50">
+            <img src="imagenes/Captura de Pantalla 2025-04-30 a la(s) 23.55.47.png" alt="Plataforma de Cafetería">
+            <h3 id="project1-title">Plataforma de Cafetería</h3>
+            <p id="project1-desc">Desarrollé una plataforma web responsiva para reservas en línea con integración de pagos y notificaciones en tiempo real. Implementé retroalimentación en tiempo real vía APIs REST, reduciendo el tiempo de espera en un 25%. Impacto: Incremento del 30% en retención de clientes (evaluación 4.9/5).</p>
+            <a href="https://francod99.github.io/Cafeteria/" target="_blank" id="project1-link">Ver Proyecto</a>
+          </div>
+          <div class="project-card" data-aos="slide-up" data-aos-delay="100">
+            <img src="imagenes/Frapizza.png" alt="Frapizza">
+            <h3 id="project2-title">Frapizza</h3>
+            <p id="project2-desc">Diseñé una página web para una pizzería.</p>
+            <a href="https://francod99.github.io/Frapizza/" target="_blank" id="project2-link">Ver Proyecto</a>
+          </div>
+          <div class="project-card" data-aos="slide-up" data-aos-delay="150">
+            <img src="imagenes/hit.png" alt="Hit-Collect">
+            <h3 id="project3-title">Hit-Collect</h3>
+            <p id="project3-desc">Diseñé una página web para un proyecto de conocidos, sobre ventas de cartas Pokémon.</p>
+            <a href="https://francod99.github.io/Hit/" target="_blank" id="project3-link">Ver Proyecto</a>
+          </div>
+          <div class="project-card" data-aos="slide-up" data-aos-delay="200">
+            <img src="imagenes/Captura de Pantalla 2025-04-30 a la(s) 03.15.11.png" alt="Aplicación Web">
+            <h3 id="project4-title">Aplicación Web</h3>
+            <p id="project4-desc">Una aplicación web interactiva construida con React y Tailwind CSS para gestionar tareas.</p>
+            <a href="https://francod99.github.io/appweb/" target="_blank" id="project4-link">Ver Proyecto</a>
+          </div>
+          <div class="project-card" data-aos="slide-up" data-aos-delay="250">
+            <img src="imagenes/smar.png" alt="Tienda Web">
+            <h3 id="project5-title">Smartphone Store</h3>
+            <p id="project5-desc">Un sitio web responsivo con animaciones  y diseño futurista.</p>
+            <a href="https://francod99.github.io/sms/" target="_blank" id="project5-link">Ver Proyecto</a>
+          </div>
+          <div class="project-card" data-aos="slide-up" data-aos-delay="300">
+            <img src="imagenes/natureza.png" alt="El Corazón Verde">
+            <h3 id="project6-title">El Corazón Verde</h3>
+            <p id="project6-desc">Blog informativo sobre el Amazonas </p>
+            <a href="https://merry-rugelach-87004c.netlify.app/" target="_blank" id="project6-link">Ver Proyecto</a>
+          </div>
+          <div class="project-card" data-aos="slide-up" data-aos-delay="350">
+            <img src="imagenes/Captura de Pantalla 2025-05-05 a la(s) 04.22.06.png" alt="Dashboard Admin">
+            <h3 id="project7-title">Futbol Argentino</h3>
+            <p id="project7-desc">Panel de administración con gráficos y gestión de datos.</p>
+            <a href="https://example.com/project7" target="_blank" id="project7-link">Ver Proyecto</a>
+          </div>
+        </div>
+        <button class="carousel-btn prev" data-aos="fade-right">←</button>
+        <button class="carousel-btn next" data-aos="fade-left">→</button>
+        <div class="carousel-indicators" id="carousel-indicators"></div>
+      </div>
+    </section>
+    <section id="contact" class="contact" data-aos="fade-up">
+      <h2 id="contact-title">Contáctame</h2>
+      <div class="contact-info" data-aos="fade-up" data-aos-delay="50">
+        <p>Dirección: Av. Callao 1396 PB, CABA, Argentina</p>
+        <p>Teléfono: +5492324520065</p>
+        <p>Email: <a href="mailto:francodufor99@gmail.com">francodufor99@gmail.com</a></p>
+      </div>
+      <form id="contact-form" data-aos="zoom-in">
+        <input type="text" placeholder="Nombre" required id="form-name" aria-label="Nombre">
+        <input type="email" placeholder="Correo Electrónico" required id="form-email" aria-label="Correo Electrónico">
+        <textarea placeholder="Mensaje" rows="5" required id="form-message" aria-label="Mensaje"></textarea>
+        <button type="submit" id="form-submit">Enviar Mensaje</button>
+      </form>
+    </section>
+  </div>
+  <footer>
+    <p id="footer-text">© 2025 Franco Dufourquet. Todos los derechos reservados.</p>
+  </footer>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    // Inicializar AOS
+    AOS.init({ duration: 500, easing: 'ease-in-out', once: true });
+
+    // Efecto de escritura para el nombre
+    const nameElement = document.getElementById('header-name');
+    const nameText = 'Franco Dufourquet';
+    let charIndex = 0;
+    const typingSpeed = window.innerWidth <= 768 ? 80 : 100;
+
+    function typeWriter() {
+      if (charIndex < nameText.length) {
+        nameElement.textContent += nameText.charAt(charIndex);
+        charIndex++;
+        setTimeout(typeWriter, typingSpeed);
+      }
+    }
+    window.addEventListener('load', typeWriter);
+
+    // Menú hamburguesa
+    const hamburger = document.querySelector('.hamburger');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const closeBtn = document.querySelector('.close-btn');
+    const mobileLinks = document.querySelectorAll('.mobile-menu a');
+
+    hamburger.addEventListener('click', () => {
+      mobileMenu.classList.add('active');
+    });
+
+    closeBtn.addEventListener('click', () => {
+      mobileMenu.classList.remove('active');
+    });
+
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+      });
+    });
+
+    // Cerrar menú al hacer clic fuera
+    document.addEventListener('click', (e) => {
+      if (!mobileMenu.contains(e.target) && !hamburger.contains(e.target)) {
+        mobileMenu.classList.remove('active');
+      }
+    });
+
+    // Traducciones
+    const translations = {
+      es: {
+        'header-name': 'Franco Dufourquet',
+        'header-title': 'Desarrollador Front-End | Especialista en UX & Unity',
+        'contact-btn': 'Contáctame',
+        'cv-btn': 'Descargar CV',
+        'cv-link': 'cv-es.pdf',
+        'about-title': 'Sobre Mí',
+        'about-text': 'Me dirijo a usted con el propósito de expresar mi interés en la oportunidad de unirme como programador. A lo largo de mi carrera, he tenido la oportunidad de trabajar en proyectos desafiantes y enriquecedores, lo que me ha permitido desarrollar una sólida base técnica y habilidades interpersonales. Soy una persona sociable que se adapta fácilmente a diferentes entornos y equipos, con un enfoque persistente y orientado a resultados. Además, he desarrollado juegos en 3D y 2D utilizando Unity, lo que me ha dado una perspectiva única sobre la creación de experiencias interactivas. Mi dominio del español, portugués e inglés también es un plus que me permite colaborar en equipos multiculturales. ¡Gracias por su tiempo y consideración!',
+        'education-title': 'Formación',
+        'certifications-title': 'Certificaciones',
+        'achievements-title': 'Logros Destacados',
+        'stat-traffic': 'Tráfico Orgánico',
+        'stat-projects': 'Proyectos a Tiempo',
+        'stat-usability': 'Pruebas de Usabilidad',
+        'skills-title': 'Habilidades',
+        'experience-title': 'Experiencia Laboral',
+        'experience1-title': 'Pasantía - Conformación de Planillas de Cálculo',
+        'experience1-desc': 'Grupo New Energy | Febrero 2023\nCreación y gestión de planillas de cálculo para análisis de datos, optimizando procesos administrativos.',
+        'experience2-title': 'Técnico en Mantenimiento e Instalación',
+        'experience2-desc': 'Bug Soluciones Informáticas S.A. | 2020 - Presente\nMantenimiento e instalación de equipos informáticos, cableado estructurado y soporte técnico, garantizando operatividad y eficiencia.',
+        'projects-title': 'Proyectos',
+        'project1-title': 'Plataforma de Cafetería',
+        'project1-desc': 'Desarrollé una plataforma web responsiva para reservas en línea con integración de pagos y notificaciones en tiempo real. Implementé retroalimentación en tiempo real vía APIs REST, reduciendo el tiempo de espera en un 25%. Impacto: Incremento del 30% en retención de clientes (evaluación 4.9/5).',
+        'project1-link': 'https://francod99.github.io/Cafeteria/',
+        'project2-title': 'Frapizza',
+        'project2-desc': 'Diseñé una página web para una pizzería.',
+        'project2-link': 'https://francod99.github.io/Frapizza/',
+        'project3-title': 'Hit-Collect',
+        'project3-desc': 'Diseñé una página web para un proyecto de conocidos, sobre ventas de cartas Pokémon.',
+        'project3-link': 'https://francod99.github.io/Hit/',
+        'project4-title': 'Aplicación Web',
+        'project4-desc': 'Una aplicación web interactiva construida con React y Tailwind CSS para gestionar tareas.',
+        'project4-link': 'https://francod99.github.io/appweb/',
+        'project5-title': 'Portfolio Personal',
+        'project5-desc': 'Un sitio web responsivo con animaciones suaves y diseño moderno.',
+        'project5-link': 'https://example.com/project5',
+        'project6-title': 'E-commerce',
+        'project6-desc': 'Tienda online con integración de pagos y carrito de compras.',
+        'project6-link': 'https://example.com/project6',
+        'project7-title': 'Dashboard Admin',
+        'project7-desc': 'Panel de administración con gráficos y gestión de datos.',
+        'project7-link': 'https://example.com/project7',
+        'contact-title': 'Contáctame',
+        'form-name': 'Nombre',
+        'form-email': 'Correo Electrónico',
+        'form-message': 'Mensaje',
+        'form-submit': 'Enviar Mensaje',
+        'footer-text': '© 2025 Franco Dufourquet. Todos los derechos reservados.'
+      },
+      en: {
+        'header-name': 'Franco Dufourquet',
+        'header-title': 'Front-End Developer | UX & Unity Specialist',
+        'contact-btn': 'Contact Me',
+        'cv-btn': 'Download CV',
+        'cv-link': 'cv-en.pdf',
+        'about-title': 'About Me',
+        'about-text': 'I am reaching out to express my interest in joining as a programmer. Throughout my career, I have had the opportunity to work on challenging and enriching projects, which have allowed me to develop a strong technical foundation and interpersonal skills. I am a sociable person who adapts easily to different environments and teams, with a persistent and results-oriented approach. Additionally, I have developed 3D and 2D games using Unity, giving me a unique perspective on creating interactive experiences. My proficiency in Spanish, Portuguese, and English is also a plus, enabling me to collaborate in multicultural teams. Thank you for your time and consideration!',
+        'education-title': 'Education',
+        'certifications-title': 'Certifications',
+        'achievements-title': 'Key Achievements',
+        'stat-traffic': 'Organic Traffic',
+        'stat-projects': 'Projects on Time',
+        'stat-usability': 'Usability Tests',
+        'skills-title': 'Skills',
+        'experience-title': 'Work Experience',
+        'experience1-title': 'Internship - Spreadsheet Development',
+        'experience1-desc': 'Grupo New Energy | February 2023\nCreation and management of spreadsheets for data analysis, optimizing administrative processes.',
+        'experience2-title': 'Maintenance and Installation Technician',
+        'experience2-desc': 'Bug Soluciones Informáticas S.A. | 2020 - Present\nMaintenance and installation of computer equipment, structured cabling, and technical support, ensuring operational efficiency.',
+        'projects-title': 'Projects',
+        'project1-title': 'Cafeteria Platform',
+        'project1-desc': 'Developed a responsive web platform for online reservations with payment integration and real-time notifications. Implemented real-time feedback via REST APIs, reducing wait time by 25%. Impact: 30% increase in customer retention (4.9/5 rating).',
+        'project1-link': 'https://francod99.github.io/Cafeteria/',
+        'project2-title': 'Frapizza',
+        'project2-desc': 'Designed a website for a pizzeria.',
+        'project2-link': 'https://francod99.github.io/Frapizza/',
+        'project3-title': 'Hit-Collect',
+        'project3-desc': 'Designed a website for a project by acquaintances, focused on Pokémon card sales.',
+        'project3-link': 'https://francod99.github.io/Hit/',
+        'project4-title': 'Web Application',
+        'project4-desc': 'An interactive web application built with React and Tailwind CSS for task management.',
+        'project4-link': 'https://francod99.github.io/appweb/',
+        'project5-title': 'Personal Portfolio',
+        'project5-desc': 'A responsive website with smooth animations and modern design.',
+        'project5-link': 'https://example.com/project5',
+        'project6-title': 'E-commerce',
+        'project6-desc': 'Online store with payment integration and shopping cart.',
+        'project6-link': 'https://example.com/project6',
+        'project7-title': 'Admin Dashboard',
+        'project7-desc': 'Administrative panel with charts and data management.',
+        'project7-link': 'https://example.com/project7',
+        'contact-title': 'Contact Me',
+        'form-name': 'Name',
+        'form-email': 'Email',
+        'form-message': 'Message',
+        'form-submit': 'Send Message',
+        'footer-text': '© 2025 Franco Dufourquet. All rights reserved.'
+      },
+      pt: {
+        'header-name': 'Franco Dufourquet',
+        'header-title': 'Desenvolvedor Front-End | Especialista em UX & Unity',
+        'contact-btn': 'Entre em Contato',
+        'cv-btn': 'Baixar CV',
+        'cv-link': 'cv-pt.pdf',
+        'about-title': 'Sobre Mim',
+        'about-text': 'Dirijo-me a você com o propósito de expressar meu interesse na oportunidade de ingressar como programador. Ao longo da minha carreira, tive a oportunidade de trabalhar em projetos desafiadores e enriquecedores, o que me permitiu desenvolver uma sólida base técnica e habilidades interpessoais. Sou uma pessoa sociável que se adapta facilmente a diferentes ambientes e equipes, com uma abordagem persistente e orientada a resultados. Além disso, desenvolvi jogos em 3D e 2D utilizando Unity, o que me deu uma perspectiva única sobre a criação de experiências interativas. Minha proficiência em espanhol, português e inglês também é um diferencial que me permite colaborar em equipes multiculturais. Agradeço pelo seu tempo e consideração!',
+        'education-title': 'Formação',
+        'certifications-title': 'Certificações',
+        'achievements-title': 'Conquistas Destacadas',
+        'stat-traffic': 'Tráfego Orgânico',
+        'stat-projects': 'Projetos no Prazo',
+        'stat-usability': 'Testes de Usabilidade',
+        'skills-title': 'Habilidades',
+        'experience-title': 'Experiência Profissional',
+        'experience1-title': 'Estágio - Desenvolvimento de Planilhas',
+        'experience1-desc': 'Grupo New Energy | Fevereiro 2023\nCriação e gerenciamento de planilhas para análise de dados, otimizando processos administrativos.',
+        'experience2-title': 'Técnico em Manutenção e Instalação',
+        'experience2-desc': 'Bug Soluciones Informáticas S.A. | 2020 - Presente\nManutenção e instalação de equipamentos informáticos, cabeamento estruturado e suporte técnico, garantindo eficiência operacional.',
+        'projects-title': 'Projetos',
+        'project1-title': 'Plataforma de Cafeteria',
+        'project1-desc': 'Desenvolvi uma plataforma web responsiva para reservas online com integração de pagamentos e notificações em tempo real. Implementei feedback em tempo real via APIs REST, reduzindo o tempo de espera em 25%. Impacto: Aumento de 30% na retenção de clientes (avaliação 4.9/5).',
+        'project1-link': 'https://francod99.github.io/Cafeteria/',
+        'project2-title': 'Frapizza',
+        'project2-desc': 'Projetei um site para uma pizzaria.',
+        'project2-link': 'https://francod99.github.io/Frapizza/',
+        'project3-title': 'Hit-Collect',
+        'project3-desc': 'Projetei um site para um projeto de conhecidos, focado na venda de cartas Pokémon.',
+        'project3-link': 'https://francod99.github.io/Hit/',
+        'project4-title': 'Aplicação Web',
+        'project4-desc': 'Uma aplicação web interativa construída com React e Tailwind CSS para gerenciamento de tarefas.',
+        'project4-link': 'https://francod99.github.io/appweb/',
+        'project5-title': 'Portfólio Pessoal',
+        'project5-desc': 'Um site responsivo com animações suaves e design moderno.',
+        'project5-link': 'https://example.com/project5',
+        'project6-title': 'E-commerce',
+        'project6-desc': 'Loja online com integração de pagamentos e carrinho de compras.',
+        'project6-link': 'https://example.com/project6',
+        'project7-title': 'Painel Administrativo',
+        'project7-desc': 'Painel administrativo com gráficos e gerenciamento de dados.',
+        'project7-link': 'https://example.com/project7',
+        'contact-title': 'Entre em Contato',
+        'form-name': 'Nome',
+        'form-email': 'E-mail',
+        'form-message': 'Mensagem',
+        'form-submit': 'Enviar Mensagem',
+        'footer-text': '© 2025 Franco Dufourquet. Todos os direitos reservados.'
+      }
+    };
+
+    // Cambiar idioma
+    function changeLanguage(lang) {
+      document.documentElement.lang = lang;
+      Object.keys(translations[lang]).forEach(id => {
+        const element = document.getElementById(id);
+        if (element) {
+          if (id === 'cv-link') {
+            document.getElementById('cv-btn').href = translations[lang][id];
+          } else if (id.includes('project') && id.includes('link')) {
+            document.getElementById(id).href = translations[lang][id];
+          } else if (id === 'form-name' || id === 'form-email' || id === 'form-message') {
+            document.getElementById(id).placeholder = translations[lang][id];
+          } else if (id.includes('experience') && id.includes('desc')) {
+            element.textContent = translations[lang][id].replace('\n', ' - ');
+          } else if (id !== 'header-name') {
+            element.textContent = translations[lang][id];
+          }
+        }
+      });
+    }
+
+    // Navegación suave
+    document.querySelectorAll('nav a, .mobile-menu a').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href').substring(1);
+        const targetElement = document.getElementById(targetId);
+        window.scrollTo({
+          top: targetElement.offsetTop - 60,
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    // Carrusel
+    const carousel = document.querySelector('.carousel');
+    const carouselInner = document.querySelector('.carousel-inner');
+    const prevBtn = document.querySelector('.prev');
+    const nextBtn = document.querySelector('.next');
+    const indicatorsContainer = document.getElementById('carousel-indicators');
+    let currentIndex = 0;
+    const totalItems = document.querySelectorAll('.project-card').length;
+    let visibleItems = window.innerWidth <= 768 ? 1 : window.innerWidth <= 1024 ? 2 : 3;
+    let autoSlideInterval;
+
+    function updateCarousel() {
+      const effectiveIndex = currentIndex % totalItems;
+      const offset = -effectiveIndex * (100 / visibleItems);
+      carouselInner.style.transform = `translateX(${offset}%)`;
+      updateIndicators();
+    }
+
+    function updateIndicators() {
+      const indicators = document.querySelectorAll('.carousel-indicators span');
+      indicators.forEach((indicator, index) => {
+        indicator.classList.toggle('active', index === (currentIndex % totalItems));
+      });
+    }
+
+    function createIndicators() {
+      indicatorsContainer.innerHTML = '';
+      for (let i = 0; i < totalItems; i++) {
+        const span = document.createElement('span');
+        span.addEventListener('click', () => {
+          currentIndex = i;
+          updateCarousel();
+          resetAutoSlide();
+        });
+        indicatorsContainer.appendChild(span);
+      }
+      updateIndicators();
+    }
+
+    function moveNext() {
+      currentIndex = (currentIndex + 1) % totalItems;
+      updateCarousel();
+    }
+
+    function movePrev() {
+      currentIndex = (currentIndex - 1 + totalItems) % totalItems;
+      updateCarousel();
+    }
+
+    function startAutoSlide() {
+      autoSlideInterval = setInterval(moveNext, 5000);
+    }
+
+    function stopAutoSlide() {
+      clearInterval(autoSlideInterval);
+    }
+
+    function resetAutoSlide() {
+      stopAutoSlide();
+      startAutoSlide();
+    }
+
+    nextBtn.addEventListener('click', () => {
+      moveNext();
+      resetAutoSlide();
+    });
+
+    prevBtn.addEventListener('click', () => {
+      movePrev();
+      resetAutoSlide();
+    });
+
+    carousel.addEventListener('mouseenter', stopAutoSlide);
+    carousel.addEventListener('mouseleave', startAutoSlide);
+
+    // Soporte para deslizar en dispositivos táctiles
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    carousel.addEventListener('touchstart', e => {
+      touchStartX = e.changedTouches[0].screenX;
+      stopAutoSlide();
+    });
+
+    carousel.addEventListener('touchend', e => {
+      touchEndX = e.changedTouches[0].screenX;
+      if (touchStartX - touchEndX > 50) {
+        moveNext();
+      } else if (touchEndX - touchStartX > 50) {
+        movePrev();
+      }
+      resetAutoSlide();
+    });
+
+    window.addEventListener('resize', () => {
+      visibleItems = window.innerWidth <= 768 ? 1 : window.innerWidth <= 1024 ? 2 : 3;
+      document.documentElement.style.setProperty('--visible-items', visibleItems);
+      document.querySelectorAll('.project-card').forEach(card => {
+        card.style.flex = `0 0 ${100 / visibleItems}%`;
+      });
+      createIndicators();
+      updateCarousel();
+    });
+
+    // Inicializar carrusel
+    document.documentElement.style.setProperty('--visible-items', visibleItems);
+    createIndicators();
+    startAutoSlide();
+
+    // Formulario de Contacto
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const name = document.getElementById('form-name').value;
+      const email = document.getElementById('form-email').value;
+      const message = document.getElementById('form-message').value;
+      
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        alert(document.documentElement.lang === 'es' ? 'Por favor, ingrese un correo electrónico válido.' :
+              document.documentElement.lang === 'pt' ? 'Por favor, insira um e-mail válido.' :
+              'Please enter a valid email address.');
+        return;
+      }
+
+      const subject = encodeURIComponent('Mensaje desde el portafolio de Franco Dufourquet');
+      const body = encodeURIComponent(`Nombre: ${name}\nCorreo: ${email}\n\nMensaje:\n${message}`);
+      const mailtoLink = `mailto:francodufor99@gmail.com?subject=${subject}&body=${body}`;
+      
+      window.location.href = mailtoLink;
+
+      setTimeout(() => {
+        alert(document.documentElement.lang === 'es' ? 'Formulario enviado. Se abrirá tu cliente de correo para enviar el mensaje.' :
+              document.documentElement.lang === 'pt' ? 'Formulário enviado. Seu cliente de e-mail será aberto para enviar a mensagem.' :
+              'Form submitted. Your email client will open to send the message.');
+        this.reset();
+      }, 500);
+    });
+  </script>
+</body>
+</html>
